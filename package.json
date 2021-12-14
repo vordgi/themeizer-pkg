@@ -1,0 +1,19 @@
+{
+  "name": "themeizer-pkg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/webpack/loader.js",
+  "files": ["dist"],
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "start": "ts-node index.ts",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "16.11.12",
+    "typescript": "4.5.4"
+  }
+}
