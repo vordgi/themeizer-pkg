@@ -7,7 +7,8 @@ class ThemeizerWorker {
   data!: ThemesObj;
 
   constructor(themes?: string[]) {
-    if (themes) this.colorsRegex = new RegExp(`(${themes.join('|')})/.`);
+    if (themes && themes.length === 0) throw new Error('Do not use empry array in Themeizer')
+    if (themes?.length) this.colorsRegex = new RegExp(`(${themes.join('|')})/.`);
   }
 
   private fetchValidThemes = async ():Promise<void> => {

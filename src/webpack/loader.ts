@@ -1,18 +1,13 @@
-import Themeizer from "../Themeizer";
+import ThemeizerLoader from "./Wrapper";
 
-module.exports = async function (source: string) {
-    const { cssVariablesLibs } = await Themeizer.init([]);
-    const themesTag = `<style>
-        {\`
-        ${Object.entries(cssVariablesLibs).map(([themeName, vars]) => (
-            `.theme-${themeName} {
-                ${vars.join('\n')}
-            }`
-        )).join('\n')}
-        \`}
-    </style>`;
+const themeizerLoader = ThemeizerLoader.init()
 
-    source = source.replace(/<[^<>]*data-type=('|")themeizer('|")[^<>]*(\/>|>[^<>]*<\/[^<>]*>)/g, themesTag);
-
-    return source;
+export default function (this: any, source: string) {
+    const callback = this.async();
+    themeizerLoader.then(({themesTag}) => {
+        if (source.match(/<[^<>]*data-type=('|")themeizer('|")[^<>]*(\/>|>[^<>]*<\/[^<>]*>)/g)) {
+            source = source.replace(/<[^<>]*data-type=('|")themeizer('|")[^<>]*(\/>|[^\\]>[^<>]*<\/[^<>]*>)/g, themesTag);
+        }
+        callback(null, source);
+    })
 }
