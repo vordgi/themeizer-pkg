@@ -1,9 +1,11 @@
 {
   "name": "themeizer",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "",
   "main": "dist/webpack/loader.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "types": "dist/index.d.ts",
   "scripts": {
     "start": "ts-node index.ts",

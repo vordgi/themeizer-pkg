@@ -1,4 +1,4 @@
-import type { ThemesObj } from './types';
+import type { ThemesObj } from '../types/themeizer';
 
 const { TOKEN, BIN } = process.env;
 
