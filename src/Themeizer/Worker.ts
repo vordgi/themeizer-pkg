@@ -22,7 +22,14 @@ class ThemeizerWorker {
     const list = this.data.list.reduce<{ [theme: string]: string[] }>((acc, cur) => {
       const [theme, ...name] = cur.name.split('/');
       if (!acc[theme]) acc[theme] = [];
-      acc[theme].push(`--${name.join('-')}: ${cur.value};`);
+      const varName = name.join('-')
+      if (cur.type === 'solid') {
+        acc[theme].push(`--${varName}: ${cur.value};`);
+      } else if (cur.type === 'linear') {
+        acc[theme].push(`--${varName}: linear-gradient(var(--${varName}-setting, 0), ${cur.value});`);
+      } else if (cur.type === 'radial') {
+        acc[theme].push(`--${varName}: radial-gradient(var(--${varName}-setting, circle), ${cur.value});`);
+      }
       return acc;
     }, {});
     return list;
