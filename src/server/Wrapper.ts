@@ -18,7 +18,8 @@ class ThemeizerWrapper {
 
         if (autoUpdate && this.isUpdateNeeded()) {
             this.initializer.value.loaded = false;
-            this.initializer.value.worker = Themeizer.init(this.initializer.value.options);
+            // @ts-ignore
+            this.initializer.value.worker = Themeizer.init(THEMEIZER_OPTIONS);
         }
 
         const worker = await this.initializer.value.worker;
