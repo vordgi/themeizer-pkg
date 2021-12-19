@@ -1,6 +1,6 @@
 import type { Options, ThemesObj } from '../types/themeizer';
 
-const fetchThemes = async (options: Options): Promise<{ record: ThemesObj }> => {
+const fetchThemes = async (options: Options): Promise<ThemesObj> => {
   try {
     const resp = await fetch(options.url, {
       headers: options.headers || {},

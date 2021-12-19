@@ -21,13 +21,13 @@ class ThemeizerWrapper {
             this.initializer.value.worker = Themeizer.init(this.initializer.value.options);
         }
 
-        const { cssVariablesLibs } = await this.initializer.value.worker;
+        const worker = await this.initializer.value.worker;
         if (!this.initializer.value.loaded) {
             this.initializer.value.loaded = true;
             this.initializer.value.lastFetched = +new Date();
         }
 
-        return { cssVariablesLibs };
+        return worker;
     }
 }
 

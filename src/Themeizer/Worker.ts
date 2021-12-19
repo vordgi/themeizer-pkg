@@ -14,7 +14,7 @@ class ThemeizerWorker {
 
   private fetchValidThemes = async ():Promise<void> => {
     const themesData = await fetchThemes(this.options);
-    const { list, defaultTheme } = themesData.record;
+    const { list, defaultTheme } = themesData;
     const colorsFiltered = list.filter(({ name }) => name.match(this.colorsRegex));
     this.data = { list: colorsFiltered, defaultTheme };
   };
