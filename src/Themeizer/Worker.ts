@@ -38,7 +38,8 @@ class ThemeizerWorker {
 
   get cssVariablesLibs(): { [theme: string]: string[] } {
     const list = this.cssVariablesObj.reduce<{ [theme: string]: string[] }>((acc, cur) => {
-      acc[cur.theme].push(`${cur.name}: ${cur.value};`)
+      acc[cur.theme] = acc[cur.theme] || [];
+      acc[cur.theme].push(`${cur.name}: ${cur.value};`);
       return acc;
     }, {});
     return list;
