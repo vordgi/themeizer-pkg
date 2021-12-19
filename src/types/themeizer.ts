@@ -9,6 +9,8 @@ export type Options = {
 }
 
 export type GlobalRefType = {worker: Promise<ThemeizerWorker>, loaded: boolean, options: Options, lastFetched: number};
-export type ColorType = { name: string; value: string, type: 'solid' | 'linear' | 'radial' };
-export type ColorList = ColorType[];
+export type ColorType = 'solid' | 'linear' | 'radial'
+export type ColorObj = {theme: string, name: string, value: string, type: ColorType, origValue: string};
+export type ColorCloudObj = { name: string; value: string, type: ColorType };
+export type ColorList = ColorCloudObj[];
 export type ThemesObj = { list: ColorList; defaultTheme: string };
