@@ -1,6 +1,6 @@
 {
   "name": "themeizer",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "description": "",
   "main": "dist/webpack/loader.js",
   "files": [
