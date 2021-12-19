@@ -1,18 +1,19 @@
-import type { ThemesObj } from '../types/themeizer';
+import type { Options, ThemesObj } from '../types/themeizer';
 import fetchThemes from './fetchThemes';
 
 class ThemeizerWorker {
+  options;
+
   private colorsRegex = /[a-z0-9-_]*\/[a-z0-9-_]/;
 
   data!: ThemesObj;
 
-  constructor(themes?: string[]) {
-    if (themes && themes.length === 0) throw new Error('Do not use empry array in Themeizer')
-    if (themes?.length) this.colorsRegex = new RegExp(`(${themes.join('|')})/.`);
+  constructor(options: Options) {
+    this.options = options;
   }
 
   private fetchValidThemes = async ():Promise<void> => {
-    const themesData = await fetchThemes();
+    const themesData = await fetchThemes(this.options);
     const { list, defaultTheme } = themesData.record;
     const colorsFiltered = list.filter(({ name }) => name.match(this.colorsRegex));
     this.data = { list: colorsFiltered, defaultTheme };
@@ -35,8 +36,8 @@ class ThemeizerWorker {
     return list;
   }
 
-  static init = async (themes?: string[]): Promise<ThemeizerWorker> => {
-    const themeizerWorker = new ThemeizerWorker(themes);
+  static init = async (options: Options): Promise<ThemeizerWorker> => {
+    const themeizerWorker = new ThemeizerWorker(options);
     await themeizerWorker.fetchValidThemes();
     return themeizerWorker;
   };

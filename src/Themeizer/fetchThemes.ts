@@ -1,16 +1,9 @@
-import type { ThemesObj } from '../types/themeizer';
+import type { Options, ThemesObj } from '../types/themeizer';
 
-const { TOKEN, BIN } = process.env;
-
-if (!TOKEN) throw new Error('Please, add token');
-if (!BIN) throw new Error('Please, add bin');
-
-const fetchThemes = async (): Promise<{ record: ThemesObj }> => {
+const fetchThemes = async (options: Options): Promise<{ record: ThemesObj }> => {
   try {
-    const resp = await fetch(`https://api.jsonbin.io/v3/b/${BIN}/latest`, {
-      headers: {
-        'X-Master-Key': TOKEN,
-      },
+    const resp = await fetch(options.url, {
+      headers: options.headers || {},
     });
     if (!resp.ok) {
       throw new Error(resp.statusText);

@@ -7,8 +7,8 @@ class ThemeizerWrapper {
 
     private static isUpdateNeeded() {
         if (!this.initializer.value.worker) return true;
-        if (!this.initializer.value.revalidate) return false;
-        const nextFetch = this.initializer.value.lastFetched + this.initializer.value.revalidate * 60 * 1000;
+        if (!this.initializer.value.options.revalidate) return false;
+        const nextFetch = this.initializer.value.lastFetched + this.initializer.value.options.revalidate * 60 * 1000;
         const isOldData = this.initializer.value.loaded && nextFetch < +new Date();
         return isOldData;
     }
@@ -18,7 +18,7 @@ class ThemeizerWrapper {
 
         if (autoUpdate && this.isUpdateNeeded()) {
             this.initializer.value.loaded = false;
-            this.initializer.value.worker = Themeizer.init();
+            this.initializer.value.worker = Themeizer.init(this.initializer.value.options);
         }
 
         const { cssVariablesLibs } = await this.initializer.value.worker;
