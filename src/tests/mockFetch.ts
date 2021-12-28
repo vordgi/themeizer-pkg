@@ -8,7 +8,7 @@ const mockFetch = () => {
             return ({ ok: false, statusText: "Your token is invalid" })
         }
         if (url === '/invalid-status-in-response-with-error-key') {
-            return ({ 
+            return ({
                 ok: true,
                 json: async () => {
                     return {
@@ -18,7 +18,7 @@ const mockFetch = () => {
             })
         }
         if (url === '/invalid-status-in-response-with-err-key') {
-            return ({ 
+            return ({
                 ok: true,
                 json: async () => {
                     return {

@@ -12,10 +12,10 @@ class ThemeizerPlugin {
     options;
 
     defaultOptions = {
-        revalidate: 1, // in mins
+        revalidate: 1 // in mins
     };
 
-    constructor(options: PluginOptions) {
+    constructor (options: PluginOptions) {
         if (!options.url) {
             throw new Error('Please, add "url" option');
         }
@@ -25,7 +25,8 @@ class ThemeizerPlugin {
         this.initializer.value.options = this.options;
     }
 
-    apply() {}
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    apply () {}
 }
 
 export default ThemeizerPlugin;

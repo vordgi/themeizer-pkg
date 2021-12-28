@@ -7,7 +7,7 @@ describe('Test loader', () => {
   mockFetch();
   test('should test loader', async () => {
     const stats = await compiler('test.js');
-    const output = stats.toJson({ source: true }).modules[0].source;    
+    const output = stats.toJson({ source: true }).modules[0].source;
 
     expect(output.replace(/\r\n/g, '\n')).toBe(expectedFile);
   });

@@ -25,7 +25,7 @@ describe('Test webpack wrapper', () => {
     await expect(Promise.all([
         Wrapper.init(),
         Wrapper.init(),
-        Wrapper.init(),
+        Wrapper.init()
     ])).resolves.not.toThrow();
   });
   test('should work with multiple requests at same time and when revalidate is null', async () => {
@@ -37,7 +37,7 @@ describe('Test webpack wrapper', () => {
     await expect(Promise.all([
       Wrapper.init(),
       Wrapper.init(),
-      Wrapper.init(),
+      Wrapper.init()
     ])).resolves.not.toThrow();
   });
   test('should work with multiple requests at chain', async () => {

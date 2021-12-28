@@ -8,7 +8,7 @@ class ThemeizerWorker {
 
   data!: ThemesObj;
 
-  constructor(options: Options) {
+  constructor (options: Options) {
     this.options = options;
   }
 
@@ -19,24 +19,24 @@ class ThemeizerWorker {
     this.data = { list: colorsFiltered, defaultTheme };
   };
 
-  get cssVariablesObj(): ColorObj[] {
+  get cssVariablesObj (): ColorObj[] {
     const list = this.data.list.reduce<ColorObj[]>((acc, cur) => {
       const [theme, ...name] = cur.name.split('/');
       const varName = name.join('-');
-      const baseColor = {theme, type: cur.type, name: `--${varName}`, origValue: cur.value};
+      const baseColor = { theme, type: cur.type, name: `--${varName}`, origValue: cur.value };
       if (cur.type === 'solid') {
-        acc.push({...baseColor, value: `${cur.value}`});
+        acc.push({ ...baseColor, value: `${cur.value}` });
       } else if (cur.type === 'linear') {
-        acc.push({...baseColor, value: `linear-gradient(var(--${varName}-setting, 0), ${cur.value})`});
+        acc.push({ ...baseColor, value: `linear-gradient(var(--${varName}-setting, 0), ${cur.value})` });
       } else if (cur.type === 'radial') {
-        acc.push({...baseColor, value: `radial-gradient(var(--${varName}-setting, circle), ${cur.value})`});
+        acc.push({ ...baseColor, value: `radial-gradient(var(--${varName}-setting, circle), ${cur.value})` });
       }
       return acc;
     }, []);
     return list;
   }
 
-  get cssVariablesLibs(): { [theme: string]: string[] } {
+  get cssVariablesLibs (): { [theme: string]: string[] } {
     const list = this.cssVariablesObj.reduce<{ [theme: string]: string[] }>((acc, cur) => {
       acc[cur.theme] = acc[cur.theme] || [];
       acc[cur.theme].push(`${cur.name}: ${cur.value};`);

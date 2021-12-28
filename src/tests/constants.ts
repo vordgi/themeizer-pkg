@@ -34,27 +34,26 @@ export const COLORS_MIN: ColorCloudObj[] = [
 ]
 
 export const COLORS_VARIABLES_OBJ = [
-  {"name": "--primary", "origValue": "rgb(102, 182, 255)", "theme": "dark", "type": "solid", "value": "rgb(102, 182, 255)"},
-  {"name": "--linear", "origValue": "rgb(224, 224, 224) 0%, rgba(223, 223, 223, 0) 100%", "theme": "dark", "type": "linear", "value": "linear-gradient(var(--linear-setting, 0), rgb(224, 224, 224) 0%, rgba(223, 223, 223, 0) 100%)"},
-  {"name": "--radial", "origValue": "rgb(224, 224, 224) 0%, rgba(223, 223, 223, 0) 100%", "theme": "dark", "type": "radial", "value": "radial-gradient(var(--radial-setting, circle), rgb(224, 224, 224) 0%, rgba(223, 223, 223, 0) 100%)"},
-  {"name": "--primary", "origValue": "rgb(0, 26, 119)", "theme": "light", "type": "solid", "value": "rgb(0, 26, 119)"},
-  {"name": "--linear", "origValue": "rgb(51, 51, 51) 0%, rgba(51, 51, 51, 0) 100%", "theme": "light", "type": "linear", "value": "linear-gradient(var(--linear-setting, 0), rgb(51, 51, 51) 0%, rgba(51, 51, 51, 0) 100%)"},
-  {"name": "--radial", "origValue": "rgb(51, 51, 51) 0%, rgba(51, 51, 51, 0) 100%", "theme": "light", "type": "radial", "value": "radial-gradient(var(--radial-setting, circle), rgb(51, 51, 51) 0%, rgba(51, 51, 51, 0) 100%)"},
+  { name: "--primary", origValue: "rgb(102, 182, 255)", theme: "dark", type: "solid", value: "rgb(102, 182, 255)" },
+  { name: "--linear", origValue: "rgb(224, 224, 224) 0%, rgba(223, 223, 223, 0) 100%", theme: "dark", type: "linear", value: "linear-gradient(var(--linear-setting, 0), rgb(224, 224, 224) 0%, rgba(223, 223, 223, 0) 100%)" },
+  { name: "--radial", origValue: "rgb(224, 224, 224) 0%, rgba(223, 223, 223, 0) 100%", theme: "dark", type: "radial", value: "radial-gradient(var(--radial-setting, circle), rgb(224, 224, 224) 0%, rgba(223, 223, 223, 0) 100%)" },
+  { name: "--primary", origValue: "rgb(0, 26, 119)", theme: "light", type: "solid", value: "rgb(0, 26, 119)" },
+  { name: "--linear", origValue: "rgb(51, 51, 51) 0%, rgba(51, 51, 51, 0) 100%", theme: "light", type: "linear", value: "linear-gradient(var(--linear-setting, 0), rgb(51, 51, 51) 0%, rgba(51, 51, 51, 0) 100%)" },
+  { name: "--radial", origValue: "rgb(51, 51, 51) 0%, rgba(51, 51, 51, 0) 100%", theme: "light", type: "radial", value: "radial-gradient(var(--radial-setting, circle), rgb(51, 51, 51) 0%, rgba(51, 51, 51, 0) 100%)" }
 ]
 
 export const COLORS_VARIABLES_LIBS = {
-  "dark": [
+  dark: [
     "--primary: rgb(102, 182, 255);",
     "--linear: linear-gradient(var(--linear-setting, 0), rgb(224, 224, 224) 0%, rgba(223, 223, 223, 0) 100%);",
     "--radial: radial-gradient(var(--radial-setting, circle), rgb(224, 224, 224) 0%, rgba(223, 223, 223, 0) 100%);"
   ],
-  "light": [
+  light: [
     "--primary: rgb(0, 26, 119);",
     "--linear: linear-gradient(var(--linear-setting, 0), rgb(51, 51, 51) 0%, rgba(51, 51, 51, 0) 100%);",
     "--radial: radial-gradient(var(--radial-setting, circle), rgb(51, 51, 51) 0%, rgba(51, 51, 51, 0) 100%);"
   ]
 }
-
 
 export const TEST_STYLES = `
 .default {

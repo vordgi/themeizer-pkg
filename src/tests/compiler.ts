@@ -11,9 +11,9 @@ export default (fixture: any, options = {}) => {
                 test: /\.js$/,
                 use: {
                     loader: path.resolve(__dirname, '../../dist/webpack/loader.js'),
-                    options,
-                },
-            }],
+                    options
+                }
+            }]
         },
         plugins: [new ThemeizerPlugin({
             url: "/colors-min",

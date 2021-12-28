@@ -5,7 +5,7 @@ import Themeizer from '../Themeizer/index';
 class ThemeizerServerWrapper {
     static initializer = new GlobalRef<GlobalRefType>('themeizer');
 
-    private static isUpdateNeeded() {
+    private static isUpdateNeeded () {
         if (!this.initializer.value.worker) return true;
         if (this.initializer.value.options.revalidate === null) return false;
         const nextFetch = (this.initializer.value.lastFetched || 0) + this.initializer.value.options.revalidate * 60 * 1000 - 1;
@@ -13,7 +13,7 @@ class ThemeizerServerWrapper {
         return isOldData;
     }
 
-    static async init(autoUpdate: boolean = true) {
+    static async init (autoUpdate = true) {
         this.initializer.value = this.initializer.value || {};
         if (process.env.THEMEIZER_OPTIONS && !this.initializer.value.options) {
             this.initializer.value.options = JSON.parse(process.env.THEMEIZER_OPTIONS);
