@@ -9,7 +9,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "start": "ts-node index.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "test": "jest"
   },
   "keywords": [],
   "repository": {
@@ -24,8 +25,11 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "16.11.12",
+    "@types/jest": "27.0.3",
     "@types/node-fetch": "2.5.12",
     "@types/webpack": "5.28.0",
+    "jest": "27.4.5",
+    "ts-jest": "27.1.2",
     "typescript": "4.5.4"
   },
   "dependencies": {
