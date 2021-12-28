@@ -9,7 +9,7 @@ const fetchThemes = async (options: Options): Promise<ThemesObj> => {
       throw new Error(resp.statusText);
     }
     const data = await resp.json();
-    if (data.status && data.status !== 200) {
+    if (data.status && data.status >= 300) {
       throw new Error(data.error || `Status ${data.status}: ${data.err}`);
     }
 

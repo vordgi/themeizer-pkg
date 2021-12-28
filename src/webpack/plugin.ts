@@ -3,7 +3,7 @@ import GlobalRef from '../Themeizer/GlobalRef';
 import fetch from 'node-fetch';
 
 interface PluginOptions extends Omit<Options, 'revalidate'> {
-    revalidate?: number
+    revalidate: number | null
 }
 
 class ThemeizerPlugin {
@@ -11,7 +11,7 @@ class ThemeizerPlugin {
 
     options;
 
-    static defaultOptions = {
+    defaultOptions = {
         revalidate: 1, // in mins
     };
 
@@ -20,7 +20,7 @@ class ThemeizerPlugin {
             throw new Error('Please, add "url" option');
         }
         if (!global.fetch) global.fetch = fetch as any;
-        this.options = { ...ThemeizerPlugin.defaultOptions, ...options };
+        this.options = { ...this.defaultOptions, ...options };
         this.initializer.value = {} as any;
         this.initializer.value.options = this.options;
     }

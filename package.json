@@ -1,12 +1,15 @@
 {
   "name": "themeizer",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "",
   "main": "dist/webpack/loader.js",
   "files": [
-    "dist"
+    "dist/server",
+    "dist/Themeizer",
+    "dist/types",
+    "dist/webpack"
   ],
-  "types": "dist/index.d.ts",
+  "types": "dist/webpack/loader.d.ts",
   "scripts": {
     "start": "ts-node index.ts",
     "build": "tsc",

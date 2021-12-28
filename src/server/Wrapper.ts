@@ -7,8 +7,8 @@ class ThemeizerServerWrapper {
 
     private static isUpdateNeeded() {
         if (!this.initializer.value.worker) return true;
-        if (!this.initializer.value.options.revalidate) return false;
-        const nextFetch = this.initializer.value.lastFetched + this.initializer.value.options.revalidate * 60 * 1000;
+        if (this.initializer.value.options.revalidate === null) return false;
+        const nextFetch = (this.initializer.value.lastFetched || 0) + this.initializer.value.options.revalidate * 60 * 1000 - 1;
         const isOldData = this.initializer.value.loaded && nextFetch < +new Date();
         return isOldData;
     }

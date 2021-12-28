@@ -2,7 +2,7 @@
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  collectCoverageFrom: ["src/**/*.ts", "!src/tests/*.ts", "!src/types/*.ts"],
+  collectCoverageFrom: ["src/**/*.ts", "!src/webpack/loader.ts", "!src/tests/*.ts", "!src/types/*.ts"],
   coverageReporters: ["text"],
   testRegex: "src/tests/.*\\.test\\.ts$",
   coverageThreshold: {
