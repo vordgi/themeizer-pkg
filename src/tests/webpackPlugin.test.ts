@@ -7,12 +7,11 @@ describe('Test webpack plugin', () => {
       revalidate: 1
     } as any)).toThrow("Please, add \"url\" option");
   });
-  test('should use node-fetch if global.fetch is undefined', async () => {
-    global.fetch = null as any;
+  test('plugin apply should not throw any error', async () => {
     expect(() => new ThemeizerPlugin({
+      url: "/test-apply",
       headers: {},
-      url: "any",
       revalidate: 1
-    } as any)).not.toThrow();
+    }).apply()).not.toThrow();
   });
 });

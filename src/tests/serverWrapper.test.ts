@@ -2,7 +2,7 @@ import ThemeizerPlugin from '../webpack/plugin';
 import Wrapper from '../server/Wrapper';
 import mockFetch from "./mockFetch";
 
-describe('Test webpack wrapper', () => {
+describe('Test server wrapper', () => {
   mockFetch();
   test('should throw an error if config is undefined', async () => {
     await expect(async () => await Wrapper.init()).rejects.toThrow("Please, configure Wrapper");
@@ -19,8 +19,8 @@ describe('Test webpack wrapper', () => {
   test('should work with multiple requests at same time and when revalidate is 0', async () => {
     new ThemeizerPlugin({
       headers: {},
-      url: "any",
-      revalidate: 1
+      url: "/test-revalidate-0",
+      revalidate: 0
     });
     await expect(Promise.all([
         Wrapper.init(),
@@ -31,7 +31,7 @@ describe('Test webpack wrapper', () => {
   test('should work with multiple requests at same time and when revalidate is null', async () => {
     new ThemeizerPlugin({
       headers: {},
-      url: "any",
+      url: "/test-revalidate-null",
       revalidate: null
     });
     await expect(Promise.all([
@@ -43,7 +43,7 @@ describe('Test webpack wrapper', () => {
   test('should work with multiple requests at chain', async () => {
     new ThemeizerPlugin({
       headers: {},
-      url: "any",
+      url: "/test-revalidate-0-chain",
       revalidate: 0
     });
     await expect(

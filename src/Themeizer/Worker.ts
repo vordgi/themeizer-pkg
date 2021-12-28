@@ -1,5 +1,5 @@
 import type { ColorObj, Options, ThemesObj } from '../types/themeizer';
-import fetchThemes from './fetchThemes';
+import FetchWrapper from 'fetch-cache-wrapper/dist/Wrapper';
 
 class ThemeizerWorker {
   options;
@@ -13,10 +13,20 @@ class ThemeizerWorker {
   }
 
   private fetchValidThemes = async ():Promise<void> => {
-    const themesData = await fetchThemes(this.options);
-    const { list, defaultTheme } = themesData;
-    const colorsFiltered = list.filter(({ name }) => name.match(this.colorsRegex));
-    this.data = { list: colorsFiltered, defaultTheme };
+    await FetchWrapper.fetch(this.options, async (resp) => {
+      try {
+        const data = await resp.json();
+        if (data.status && data.status !== 200) {
+          throw new Error(data.error || `Status ${data.status}: ${data.err}`);
+        }
+        const { list, defaultTheme } = data as ThemesObj;
+        const colorsFiltered = list.filter(({ name }) => name.match(this.colorsRegex));
+        this.data = { list: colorsFiltered, defaultTheme };
+        return data;
+      } catch (e) {
+        throw new Error((e as {message: string}).message);
+      }
+    });
   };
 
   get cssVariablesObj (): ColorObj[] {
