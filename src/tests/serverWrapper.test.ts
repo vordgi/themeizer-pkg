@@ -14,7 +14,7 @@ describe('Test server wrapper', () => {
       revalidate: 1
     });
     const wrapper = await Wrapper.init();
-    expect(wrapper && Object.keys(wrapper)).toEqual(["colorsRegex", "fetchValidThemes", "options", "data"]);
+    expect(wrapper && Object.keys(wrapper)).toEqual(["fetchValidThemes", "options", "data"]);
   });
   test('should work with multiple requests at same time and when revalidate is 0', async () => {
     new ThemeizerPlugin({

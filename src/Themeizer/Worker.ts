@@ -1,10 +1,8 @@
-import type { ColorObj, Options, ThemesObj } from '../types/themeizer';
+import type { Options, ThemesObj } from '../types/themeizer';
 import FetchWrapper from 'fetch-cache-wrapper/dist/Wrapper';
 
 class ThemeizerWorker {
   options;
-
-  private colorsRegex = /[a-z0-9-_]*\/[a-z0-9-_]/;
 
   data!: ThemesObj;
 
@@ -19,9 +17,7 @@ class ThemeizerWorker {
         if (data.status && data.status !== 200) {
           throw new Error(data.error || `Status ${data.status}: ${data.err}`);
         }
-        const { list, defaultTheme } = data as ThemesObj;
-        const colorsFiltered = list.filter(({ name }) => name.match(this.colorsRegex));
-        this.data = { list: colorsFiltered, defaultTheme };
+        this.data = data;
         return data;
       } catch (e) {
         throw new Error((e as {message: string}).message);
@@ -29,30 +25,24 @@ class ThemeizerWorker {
     });
   };
 
-  get cssVariablesObj (): ColorObj[] {
-    const list = this.data.list.reduce<ColorObj[]>((acc, cur) => {
-      const [theme, ...name] = cur.name.split('/');
-      const varName = name.join('-');
-      const baseColor = { theme, type: cur.type, name: `--${varName}`, origValue: cur.value };
-      if (cur.type === 'solid') {
-        acc.push({ ...baseColor, value: `${cur.value}` });
-      } else if (cur.type === 'linear') {
-        acc.push({ ...baseColor, value: `linear-gradient(var(--${varName}-setting, 0), ${cur.value})` });
-      } else if (cur.type === 'radial') {
-        acc.push({ ...baseColor, value: `radial-gradient(var(--${varName}-setting, circle), ${cur.value})` });
-      }
-      return acc;
-    }, []);
-    return list;
-  }
+  get cssVariablesLibs (): { [theme: string]: {list: string[], type: string} } {
+    const dataEntries = Object.entries(this.data).map(([theme, { list, type }]) => {
+      const newList = list.map(item => {
+        const varName = item.name.replace('/', '-');
+        let value = '';
+        if (item.type === 'solid') {
+          value = `${item.value}`
+        } else if (item.type === 'linear') {
+          value = `linear-gradient(var(--${varName}-setting, 0), ${item.value})`
+        } else if (item.type === 'radial') {
+          value = `radial-gradient(var(--${varName}-setting, circle), ${item.value})`
+        }
+        return (`--${varName}: ${value};`);
+      })
+      return [theme, { list: newList, type }];
+    })
 
-  get cssVariablesLibs (): { [theme: string]: string[] } {
-    const list = this.cssVariablesObj.reduce<{ [theme: string]: string[] }>((acc, cur) => {
-      acc[cur.theme] = acc[cur.theme] || [];
-      acc[cur.theme].push(`${cur.name}: ${cur.value};`);
-      return acc;
-    }, {});
-    return list;
+    return Object.fromEntries(dataEntries);
   }
 
   static init = async (options: Options): Promise<ThemeizerWorker> => {

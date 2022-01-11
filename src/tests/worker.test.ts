@@ -1,4 +1,4 @@
-import { COLORS_MIN, COLORS_VARIABLES_LIBS, COLORS_VARIABLES_OBJ } from './constants';
+import { COLORS_MIN, COLORS_VARIABLES_OBJ } from './constants';
 import Worker from '../Themeizer/Worker';
 import mockFetch from "./mockFetch";
 
@@ -24,9 +24,7 @@ describe('Test worker', () => {
       revalidate: 1
     });
     const resp = ThemeizerWorker.data;
-    expect(resp).toEqual({
-      list: COLORS_MIN, defaultTheme: 'light'
-    });
+    expect(resp).toEqual(COLORS_MIN);
   });
   test('should contain orig data', async () => {
     const ThemeizerWorker = await Worker.init({
@@ -35,9 +33,7 @@ describe('Test worker', () => {
       revalidate: 1
     });
     const resp = ThemeizerWorker.data;
-    expect(resp).toEqual({
-      list: COLORS_MIN, defaultTheme: 'light'
-    });
+    expect(resp).toEqual(COLORS_MIN);
   });
   test('should parse colors correctly', async () => {
     const ThemeizerWorker = await Worker.init({
@@ -45,17 +41,8 @@ describe('Test worker', () => {
       headers: {},
       revalidate: 1
     });
-    const resp = ThemeizerWorker.cssVariablesObj;
-    expect(resp).toEqual(COLORS_VARIABLES_OBJ);
-  });
-  test('should sort colors correctly', async () => {
-    const ThemeizerWorker = await Worker.init({
-      url: "/colors-min",
-      headers: {},
-      revalidate: 1
-    });
     const resp = ThemeizerWorker.cssVariablesLibs;
-    expect(resp).toEqual(COLORS_VARIABLES_LIBS);
+    expect(resp).toEqual(COLORS_VARIABLES_OBJ);
   });
   test('should throw error if response not ok', async () => {
     const ThemeizerWorker = Worker.init({

@@ -13,4 +13,4 @@ export type ColorType = 'solid' | 'linear' | 'radial'
 export type ColorObj = {theme: string, name: string, value: string, type: ColorType, origValue: string};
 export type ColorCloudObj = { name: string; value: string, type: ColorType };
 export type ColorList = ColorCloudObj[];
-export type ThemesObj = { list: ColorList; defaultTheme: string };
+export type ThemesObj = { [theme: string]: { list: ColorList; type: 'dark' | 'light' | 'shared' } };

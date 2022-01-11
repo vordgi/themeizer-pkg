@@ -68,11 +68,12 @@ const { cssVariablesLibs } = await Themeizer.init();
 
 Build theme classes from this object
 ```js
-{Object.entries(colors).map(([themeName, vars]) => (
+{Object.entries(colors).map(([themeName, themeObj]) => (
     <style>
         {`
         .theme-${themeName} {
-            ${vars.join('\n')}
+              ${themeObj.list.join('\n')}
+              ${themeObj.type === 'dark' ? 'color-scheme: dark;' : ''}
         }
         `}
     </style>

@@ -30,9 +30,7 @@ const mockFetch = () => {
         return ({
             ok: true,
             json: async () => {
-                return {
-                    list: COLORS_MIN, defaultTheme: 'light'
-                }
+                return COLORS_MIN
             }
         }) as any;
     };

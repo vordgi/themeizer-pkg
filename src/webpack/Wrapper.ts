@@ -12,8 +12,8 @@ class ThemeizerWebpackWrapper {
         }
         if (!this.initializer.value.options) throw new Error('Please, configure Wrapper');
         const { cssVariablesLibs } = await Themeizer.init(this.initializer.value.options);
-        const themesRow = Object.entries(cssVariablesLibs).map(([themeName, vars]) => (
-            `.theme-${themeName} {${vars.join('')}}`
+        const themesRow = Object.entries(cssVariablesLibs).map(([themeName, themeObj]) => (
+            `.theme-${themeName} {${themeObj.list.join('')}${themeObj.type === 'dark' ? 'color-scheme: dark;' : ''}}`
         )).join('');
         const themesTag = `<style>{\`${themesRow}\`}</style>`;
         return { themesTag };
