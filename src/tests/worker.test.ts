@@ -1,4 +1,4 @@
-import { COLORS_MIN, COLORS_VARIABLES_OBJ } from './constants';
+import { CLOUD_COLORS, CLOUD_COLORS_WITH_SHARED, COLORS_VARIABLES_OBJ } from './constants';
 import Worker from '../Themeizer/Worker';
 import mockFetch from "./mockFetch";
 
@@ -24,16 +24,16 @@ describe('Test worker', () => {
       revalidate: 1
     });
     const resp = ThemeizerWorker.data;
-    expect(resp).toEqual(COLORS_MIN);
+    expect(resp).toEqual(CLOUD_COLORS);
   });
-  test('should contain orig data', async () => {
+  test('should contain shared variables', async () => {
     const ThemeizerWorker = await Worker.init({
-      url: "/colors-min",
+      url: "/with-shared",
       headers: {},
       revalidate: 1
     });
     const resp = ThemeizerWorker.data;
-    expect(resp).toEqual(COLORS_MIN);
+    expect(resp).toEqual(CLOUD_COLORS_WITH_SHARED);
   });
   test('should parse colors correctly', async () => {
     const ThemeizerWorker = await Worker.init({

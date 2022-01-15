@@ -25,7 +25,7 @@ class ThemeizerWorker {
     });
   };
 
-  get cssVariablesLibs (): { [theme: string]: {list: string[], type: string} } {
+  get cssVariablesLibs (): { [theme: string]: {list: {name: string, value: string}[], type: string} } {
     const dataEntries = Object.entries(this.data).map(([theme, { list, type }]) => {
       const newList = list.map(item => {
         const varName = item.name.replace('/', '-');
@@ -37,12 +37,33 @@ class ThemeizerWorker {
         } else if (item.type === 'radial') {
           value = `radial-gradient(var(--${varName}-setting, circle), ${item.value})`
         }
-        return (`--${varName}: ${value};`);
+        return ({ name: varName, value });
       })
       return [theme, { list: newList, type }];
     })
 
     return Object.fromEntries(dataEntries);
+  }
+
+  get css () {
+    const sharedVariables: string[] = [];
+    const themesClasses: string[] = [];
+
+    Object.entries(this.cssVariablesLibs).forEach(([themeName, themeObj]) => {
+      if (themeObj.type === 'shared') {
+        const themeVariables = themeObj.list.map(color => `--${themeName}-${color.name}:${color.value};`).join('');
+        sharedVariables.push(themeVariables)
+      } else {
+        const themeVariables = themeObj.list.map(color => `--${color.name}:${color.value};`).join('');
+        const themeSchema = `color-scheme:${themeObj.type === 'dark' ? 'dark' : 'light'};`
+        themesClasses.push(`.theme-${themeName}{${themeVariables}${themeSchema}}`)
+      }
+    })
+
+    const sharedCss = sharedVariables.length ? `:root{${sharedVariables.join('')}}` : ''
+
+    const styles = `${themesClasses.join('')}${sharedCss}`;
+    return styles;
   }
 
   static init = async (options: Options): Promise<ThemeizerWorker> => {

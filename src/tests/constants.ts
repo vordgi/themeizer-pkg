@@ -1,21 +1,21 @@
 import type { ThemesObj } from "../types/themeizer";
 
-export const COLORS_MIN: ThemesObj = {
+export const CLOUD_COLORS: ThemesObj = {
   light: {
     list: [
       {
         type: 'solid',
-        name: 'light/primary',
+        name: 'primary',
         value: 'rgb(0, 26, 119)'
       },
       {
         type: 'linear',
-        name: 'light/linear',
+        name: 'linear',
         value: 'rgb(51, 51, 51) 0%, rgba(51, 51, 51, 0) 100%'
       },
       {
         type: 'radial',
-        name: 'light/radial',
+        name: 'radial',
         value: 'rgb(51, 51, 51) 0%, rgba(51, 51, 51, 0) 100%'
       }
     ],
@@ -25,17 +25,17 @@ export const COLORS_MIN: ThemesObj = {
     list: [
       {
         type: 'solid',
-        name: 'dark/primary',
+        name: 'primary',
         value: 'rgb(102, 182, 255)'
       },
       {
         type: 'linear',
-        name: 'dark/linear',
+        name: 'linear',
         value: 'rgb(224, 224, 224) 0%, rgba(223, 223, 223, 0) 100%'
       },
       {
         type: 'radial',
-        name: 'dark/radial',
+        name: 'radial',
         value: 'rgb(224, 224, 224) 0%, rgba(223, 223, 223, 0) 100%'
       }
     ],
@@ -43,22 +43,46 @@ export const COLORS_MIN: ThemesObj = {
   }
 }
 
+export const CLOUD_COLORS_WITH_SHARED = {
+  ...CLOUD_COLORS,
+  custom: {
+    list: [
+      {
+        type: 'solid',
+        name: 'logo',
+        value: 'rgb(0, 229, 255)'
+      }
+    ],
+    type: "shared"
+  }
+}
+
 export const COLORS_VARIABLES_OBJ = {
   dark: {
     list: [
-      "--dark-primary: rgb(102, 182, 255);",
-      "--dark-linear: linear-gradient(var(--dark-linear-setting, 0), rgb(224, 224, 224) 0%, rgba(223, 223, 223, 0) 100%);",
-      "--dark-radial: radial-gradient(var(--dark-radial-setting, circle), rgb(224, 224, 224) 0%, rgba(223, 223, 223, 0) 100%);"
+      { name: "primary", value: "rgb(102, 182, 255)" },
+      { name: "linear", value: "linear-gradient(var(--linear-setting, 0), rgb(224, 224, 224) 0%, rgba(223, 223, 223, 0) 100%)" },
+      { name: "radial", value: "radial-gradient(var(--radial-setting, circle), rgb(224, 224, 224) 0%, rgba(223, 223, 223, 0) 100%)" }
     ],
     type: "dark"
   },
   light: {
     list: [
-      "--light-primary: rgb(0, 26, 119);",
-      "--light-linear: linear-gradient(var(--light-linear-setting, 0), rgb(51, 51, 51) 0%, rgba(51, 51, 51, 0) 100%);",
-      "--light-radial: radial-gradient(var(--light-radial-setting, circle), rgb(51, 51, 51) 0%, rgba(51, 51, 51, 0) 100%);"
+      { name: "primary", value: "rgb(0, 26, 119)" },
+      { name: "linear", value: "linear-gradient(var(--linear-setting, 0), rgb(51, 51, 51) 0%, rgba(51, 51, 51, 0) 100%)" },
+      { name: "radial", value: "radial-gradient(var(--radial-setting, circle), rgb(51, 51, 51) 0%, rgba(51, 51, 51, 0) 100%)" }
     ],
     type: "light"
+  }
+}
+
+export const COLORS_VARIABLES_OBJ_WITH_SHARED = {
+  ...COLORS_VARIABLES_OBJ,
+  custom: {
+    list: [
+      { name: "logo", value: "rgb(0, 229, 255)" }
+    ],
+    type: "shared"
   }
 }
 

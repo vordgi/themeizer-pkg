@@ -1,5 +1,5 @@
 import GlobalRef from "../Themeizer/GlobalRef";
-import { COLORS_MIN } from "./constants";
+import { CLOUD_COLORS, CLOUD_COLORS_WITH_SHARED } from "./constants";
 
 const mockFetch = () => {
     const isMocked = new GlobalRef<boolean>('mock');
@@ -27,10 +27,18 @@ const mockFetch = () => {
                 }
             })
         }
+        if (url === '/with-shared') {
+            return ({
+                ok: true,
+                json: async () => {
+                    return CLOUD_COLORS_WITH_SHARED
+                }
+            })
+        }
         return ({
             ok: true,
             json: async () => {
-                return COLORS_MIN
+                return CLOUD_COLORS
             }
         }) as any;
     };

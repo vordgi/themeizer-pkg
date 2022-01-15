@@ -14,15 +14,15 @@ describe('Test webpack wrapper', () => {
       revalidate: 1
     });
     const { themesTag } = await Wrapper.init();
-    expect(themesTag).toEqual("<style>{`.theme-light {--light-primary: rgb(0, 26, 119);--light-linear: linear-gradient(var(--light-linear-setting, 0), rgb(51, 51, 51) 0%, rgba(51, 51, 51, 0) 100%);--light-radial: radial-gradient(var(--light-radial-setting, circle), rgb(51, 51, 51) 0%, rgba(51, 51, 51, 0) 100%);}.theme-dark {--dark-primary: rgb(102, 182, 255);--dark-linear: linear-gradient(var(--dark-linear-setting, 0), rgb(224, 224, 224) 0%, rgba(223, 223, 223, 0) 100%);--dark-radial: radial-gradient(var(--dark-radial-setting, circle), rgb(224, 224, 224) 0%, rgba(223, 223, 223, 0) 100%);color-scheme: dark;}`}</style>");
+    expect(themesTag).toEqual("<style>{`.theme-light{--primary:rgb(0, 26, 119);--linear:linear-gradient(var(--linear-setting, 0), rgb(51, 51, 51) 0%, rgba(51, 51, 51, 0) 100%);--radial:radial-gradient(var(--radial-setting, circle), rgb(51, 51, 51) 0%, rgba(51, 51, 51, 0) 100%);color-scheme:light;}.theme-dark{--primary:rgb(102, 182, 255);--linear:linear-gradient(var(--linear-setting, 0), rgb(224, 224, 224) 0%, rgba(223, 223, 223, 0) 100%);--radial:radial-gradient(var(--radial-setting, circle), rgb(224, 224, 224) 0%, rgba(223, 223, 223, 0) 100%);color-scheme:dark;}`}</style>");
   });
-  test('should return correct themes tag', async () => {
+  test('should return correct themes tag with shared variables', async () => {
     new ThemeizerPlugin({
-      url: "/colors-min",
+      url: "/with-shared",
       headers: {},
       revalidate: 1
     });
     const { themesTag } = await Wrapper.init();
-    expect(themesTag).toEqual("<style>{`.theme-light {--light-primary: rgb(0, 26, 119);--light-linear: linear-gradient(var(--light-linear-setting, 0), rgb(51, 51, 51) 0%, rgba(51, 51, 51, 0) 100%);--light-radial: radial-gradient(var(--light-radial-setting, circle), rgb(51, 51, 51) 0%, rgba(51, 51, 51, 0) 100%);}.theme-dark {--dark-primary: rgb(102, 182, 255);--dark-linear: linear-gradient(var(--dark-linear-setting, 0), rgb(224, 224, 224) 0%, rgba(223, 223, 223, 0) 100%);--dark-radial: radial-gradient(var(--dark-radial-setting, circle), rgb(224, 224, 224) 0%, rgba(223, 223, 223, 0) 100%);color-scheme: dark;}`}</style>");
+    expect(themesTag).toEqual("<style>{`.theme-light{--primary:rgb(0, 26, 119);--linear:linear-gradient(var(--linear-setting, 0), rgb(51, 51, 51) 0%, rgba(51, 51, 51, 0) 100%);--radial:radial-gradient(var(--radial-setting, circle), rgb(51, 51, 51) 0%, rgba(51, 51, 51, 0) 100%);color-scheme:light;}.theme-dark{--primary:rgb(102, 182, 255);--linear:linear-gradient(var(--linear-setting, 0), rgb(224, 224, 224) 0%, rgba(223, 223, 223, 0) 100%);--radial:radial-gradient(var(--radial-setting, circle), rgb(224, 224, 224) 0%, rgba(223, 223, 223, 0) 100%);color-scheme:dark;}:root{--custom-logo:rgb(0, 229, 255);}`}</style>");
   });
 });
