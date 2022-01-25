@@ -1,9 +1,8 @@
 import ThemeizerPlugin from '../webpack/plugin';
+import "./mockFetch";
 import Wrapper from '../webpack/Wrapper';
-import mockFetch from "./mockFetch";
 
 describe('Test webpack wrapper', () => {
-  mockFetch();
   test('should throw an error if config is undefined', async () => {
     await expect(async () => await Wrapper.init()).rejects.toThrow("Please, configure Wrapper");
   });

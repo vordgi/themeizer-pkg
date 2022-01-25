@@ -1,9 +1,8 @@
 import { CLOUD_COLORS, CLOUD_COLORS_WITH_SHARED, COLORS_VARIABLES_OBJ } from './constants';
+import "./mockFetch";
 import Worker from '../Themeizer/Worker';
-import mockFetch from "./mockFetch";
 
 describe('Test worker', () => {
-  mockFetch();
   test('should contain orig options', async () => {
     const ThemeizerWorker = await Worker.init({
       url: "/colors-min",
