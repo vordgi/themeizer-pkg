@@ -1,7 +1,7 @@
 {
   "name": "themeizer",
-  "version": "1.1.1",
-  "description": "",
+  "version": "1.1.2",
+  "description": "Package for embedding themes from \"Themeizer\" Figma plugin at the server level or at build stage",
   "main": "dist/webpack/loader.js",
   "files": [
     "dist/server",
@@ -16,14 +16,23 @@
     "lint": "eslint ./**/*.ts",
     "test": "jest"
   },
-  "keywords": [],
+  "keywords": [
+    "themeizer",
+    "theming",
+    "css-variables",
+    "variables",
+    "colors",
+    "css",
+    "styles",
+    "figma"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/vordgi/themeizer-pkg.git"
   },
   "author": {
     "name": "Savelyev Alexander",
-    "email": "sasha2822222@gmail.com",
+    "email": "vordgi1@gmail.com",
     "url": "https://github.com/vordgi/"
   },
   "license": "MIT",
